@@ -9,7 +9,7 @@
 <br>
 
 <p align="center">
-  <img src="assets/panel.png" alt="Pulse panel" width="420">
+  <img src="assets/hero.png" alt="Pulse on the Omarchy bar with open panel" width="520">
 </p>
 
 </div>
@@ -22,9 +22,9 @@ Pick your preferred style on the fly with **Right click** or inside the panel. W
 
 | Look | Preview | Description |
 |---|---|---|
-| **Pulse** | <img src="assets/bar-pulse.png" alt="Pulse sparkline look" width="300"> | Smooth left-to-right waveforms. Auto-scales so an idle machine still breathes gently instead of lying flat. Sends out ripples when alerting. |
-| **Bars** | <img src="assets/bar-bars.png" alt="Bars meter look" width="180"> | Crisp icons and slim proportional meters for each metric. |
-| **Number** | <img src="assets/bar-text.png" alt="Number look" width="220"> | Compact icons with exact numerical percentages and temperatures. |
+| **Pulse** | <img src="assets/bar-pulse.png" alt="Pulse sparkline look" width="440"> | Smooth left-to-right waveforms. Auto-scales so an idle machine still breathes gently instead of lying flat. Sends out ripples when alerting. |
+| **Bars** | <img src="assets/bar-bars.png" alt="Bars meter look" width="440"> | Crisp icons and slim proportional meters for each metric. |
+| **Number** | <img src="assets/bar-text.png" alt="Number look" width="440"> | Compact icons with exact numerical percentages and temperatures. |
 
 <br>
 
@@ -41,6 +41,50 @@ Pick your preferred style on the fly with **Right click** or inside the panel. W
   - Real-time meters: Memory, Swap, GPU, VRAM, CPU Temp, Root Disk.
   - Network download/upload rates, load averages, uptime, and top 5 busiest processes.
   - Quick launcher for `btop`.
+
+<br>
+
+## Installation
+
+### Via Omarchy CLI
+
+```bash
+omarchy plugin add https://github.com/SanchoKusika/omarchy-pulse
+```
+
+### Manual Installation
+
+Clone the repository into your Omarchy plugins directory and restart the shell:
+
+```bash
+git clone https://github.com/SanchoKusika/omarchy-pulse.git ~/.config/omarchy/plugins/io.github.sanchokusika.pulse
+omarchy restart shell
+```
+
+Add Pulse to your bar in `~/.config/omarchy/shell.json` under `bar.layout`:
+
+```json
+{
+  "id": "io.github.sanchokusika.pulse"
+}
+```
+
+<br>
+
+## Removal
+
+To remove the plugin safely:
+
+```bash
+omarchy plugin remove io.github.sanchokusika.pulse
+```
+
+Or manually remove the directory and reload the shell:
+
+```bash
+rm -rf ~/.config/omarchy/plugins/io.github.sanchokusika.pulse
+omarchy restart shell
+```
 
 <br>
 

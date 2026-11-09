@@ -9,7 +9,7 @@
 <br>
 
 <p align="center">
-  <img src="assets/panel.png" alt="Панель Pulse" width="420">
+  <img src="assets/hero.png" alt="Вид Pulse на баре с открытой панелью" width="520">
 </p>
 
 </div>
@@ -22,9 +22,9 @@
 
 | Стиль | Превью | Описание |
 |---|---|---|
-| **Пульс (Pulse)** | <img src="assets/bar-pulse.png" alt="Стиль Пульс" width="300"> | Плавные графики слева направо. Автомасштабирование (даже в покое график «дышит», а не лежит плоской линией). При превышении порога тревоги точка пульсирует кольцами. |
-| **Столбцы (Bars)** | <img src="assets/bar-bars.png" alt="Стиль Столбцы" width="180"> | Чёткие иконки и аккуратные пропорциональные индикаторы для каждой метрики. |
-| **Число (Number)** | <img src="assets/bar-text.png" alt="Стиль Число" width="220"> | Компактные иконки с точными процентными и температурными значениями. |
+| **Пульс (Pulse)** | <img src="assets/bar-pulse.png" alt="Стиль Пульс" width="440"> | Плавные графики слева направо. Автомасштабирование (даже в покое график «дышит», а не лежит плоской линией). При превышении порога тревоги точка пульсирует кольцами. |
+| **Столбцы (Bars)** | <img src="assets/bar-bars.png" alt="Стиль Столбцы" width="440"> | Чёткие иконки и аккуратные пропорциональные индикаторы для каждой метрики. |
+| **Число (Number)** | <img src="assets/bar-text.png" alt="Стиль Число" width="440"> | Компактные иконки с точными процентными и температурными значениями. |
 
 <br>
 
@@ -41,6 +41,50 @@
   - Индикаторы в реальном времени: Память, Swap, ГП, VRAM, Температура, Диск `/`.
   - Скорость приёма и отдачи сети, Load Average, аптайм и топ-5 самых занятых процессов.
   - Быстрый запуск `btop`.
+
+<br>
+
+## Установка
+
+### Через Omarchy CLI
+
+```bash
+omarchy plugin add https://github.com/SanchoKusika/omarchy-pulse
+```
+
+### Ручная установка
+
+Склонируйте репозиторий в папку плагинов Omarchy и перезапустите шелл:
+
+```bash
+git clone https://github.com/SanchoKusika/omarchy-pulse.git ~/.config/omarchy/plugins/io.github.sanchokusika.pulse
+omarchy restart shell
+```
+
+Добавьте Pulse в `~/.config/omarchy/shell.json` в массив `bar.layout`:
+
+```json
+{
+  "id": "io.github.sanchokusika.pulse"
+}
+```
+
+<br>
+
+## Удаление
+
+Безопасное удаление плагина:
+
+```bash
+omarchy plugin remove io.github.sanchokusika.pulse
+```
+
+Или вручную:
+
+```bash
+rm -rf ~/.config/omarchy/plugins/io.github.sanchokusika.pulse
+omarchy restart shell
+```
 
 <br>
 
