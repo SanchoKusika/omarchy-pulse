@@ -34,7 +34,7 @@ check("metrics all expands", M.normalize({ metric: "all" }).metrics, ["cpu", "me
 check("metric cycles", M.nextMetric("temp"), "cpu")
 check("metric cycles back", M.nextMetric("cpu", -1), "temp")
 check("icons are single glyphs", Object.values(M.ICONS).map(s => [...s].length), [1, 1, 1, 1])
-check("icons are the md glyphs", Object.values(M.ICONS).map(s => s.codePointAt(0).toString(16)), ["f4bc", "efc5", "f08ee", "f050f"])
+check("icons are the md glyphs", Object.values(M.ICONS).map(s => s.codePointAt(0).toString(16)), ["f4bc", "efc5", "f0fb2", "f050f"])
 
 // ---- gpu parsing
 check("parse nvidia gpu", M.parseGpu("80, 25, 2662, 4096, 50\n", "nvidia"), {

@@ -187,10 +187,12 @@ BarWidget {
   }
 
   readonly property string tooltip: {
-    var lines = [Model.ICONS.cpu + "  " + strings.t("tip.cpu").arg(valueText("cpu", false)),
-                 Model.ICONS.mem + "  " + strings.t("tip.mem").arg(valueText("mem", false))]
-    if (sampler.hasGpu) lines.push(Model.ICONS.gpu + "  " + strings.t("tip.gpu").arg(valueText("gpu", false)))
-    if (sampler.hasTemp) lines.push(Model.ICONS.temp + "  " + strings.t("tip.temp").arg(valueText("temp", false)))
+    var lines = []
+    var list = root.activeMetrics
+    for (var i = 0; i < list.length; i++) {
+      var m = list[i]
+      lines.push(Model.ICONS[m] + "  " + strings.t("tip." + m).arg(valueText(m, false)))
+    }
     return lines.join("\n")
   }
 

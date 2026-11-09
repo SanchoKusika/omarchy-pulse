@@ -9,7 +9,7 @@
 <br>
 
 <p align="center">
-  <img src="assets/hero.png" alt="Pulse on the Omarchy bar with open panel" width="520">
+  <img src="assets/preview-hero.png" alt="Pulse on the Omarchy bar with open panel" width="520">
 </p>
 
 </div>
@@ -22,9 +22,9 @@ Pick your preferred style on the fly with **Right click** or inside the panel. W
 
 | Look | Preview | Description |
 |---|---|---|
-| **Pulse** | <img src="assets/bar-pulse.png" alt="Pulse sparkline look" width="440"> | Smooth left-to-right waveforms. Auto-scales so an idle machine still breathes gently instead of lying flat. Sends out ripples when alerting. |
-| **Bars** | <img src="assets/bar-bars.png" alt="Bars meter look" width="440"> | Crisp icons and slim proportional meters for each metric. |
-| **Number** | <img src="assets/bar-text.png" alt="Number look" width="440"> | Compact icons with exact numerical percentages and temperatures. |
+| **Pulse** | <img src="assets/preview-pulse.png" alt="Pulse sparkline look" width="440"> | Smooth left-to-right waveforms. Auto-scales so an idle machine still breathes gently instead of lying flat. Sends out ripples when alerting. |
+| **Bars** | <img src="assets/preview-bars.png" alt="Bars meter look" width="440"> | Crisp icons and slim proportional meters for each metric. |
+| **Number** | <img src="assets/preview-number.png" alt="Number look" width="440"> | Compact icons with exact numerical percentages and temperatures. |
 
 <br>
 

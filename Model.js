@@ -7,7 +7,7 @@ var STYLES = ["pulse", "bars", "text"]
 var METRICS = ["cpu", "mem", "gpu", "temp"]
 // Nerd Font oct-cpu (a plain chip), fa-memory (a RAM stick), md-expansion_card (GPU) and
 // md-thermometer: four distinct shapes that cannot be mistaken for one another.
-var ICONS = { cpu: "\uF4BC", mem: "\uEFC5", gpu: "\uDB82\uDCEE", temp: "\uDB81\uDD0F" }
+var ICONS = { cpu: "\uF4BC", mem: "\uEFC5", gpu: "\uDB83\uDFB2", temp: "\uDB81\uDD0F" }
 // Panel rows: md-swap-horizontal, harddisk, download, upload, gauge, clock-outline, vram.
 var ROW_ICONS = {
   swap: "󰓡", disk: "󰋊", down: "󰇚",
