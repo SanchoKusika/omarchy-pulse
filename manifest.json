@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "io.github.sanchokusika.pulse",
+  "name": "Pulse",
+  "version": "1.2.0",
+  "author": "SanchoKusika",
+  "license": "MIT",
+  "description": "A quiet system monitor: live CPU, memory, GPU and temperature sparklines, meters or numbers in the bar, and a panel with a two-minute graph, memory, swap, GPU, disk, network and the busiest processes.",
+  "kinds": [
+    "bar-widget"
+  ],
+  "entryPoints": {
+    "barWidget": "BarWidget.qml"
+  },
+  "barWidget": {
+    "displayName": "Pulse",
+    "description": "System monitor. Left click: panel · right click: bar look · middle click: btop.",
+    "category": "System",
+    "allowMultiple": false,
+    "defaultSection": "left"
+  },
+  "homepage": "https://github.com/SanchoKusika/omarchy-pulse"
+}
