@@ -4,7 +4,7 @@
 
 **A quiet, versatile system monitor for the [Omarchy](https://omarchy.org) bar — live sparklines, slim meters, or numbers with GPU support, reorderable multi-metric layout, and an in-depth system panel.**
 
-[Русская версия](README.ru.md)
+[Русская версия](README.ru.md) · [简体中文](README.zh-CN.md)
 
 <br>
 
