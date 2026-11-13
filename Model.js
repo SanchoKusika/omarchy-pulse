@@ -4,17 +4,17 @@
 
 var STYLES = ["pulse", "bars", "text"]
 // What the pulse and number looks follow; the bars look shows all three.
-var METRICS = ["cpu", "mem", "gpu", "temp"]
+var METRICS = ["cpu", "mem", "gpu", "temp", "gpuTemp"]
 // Nerd Font oct-cpu (a plain chip), fa-memory (a RAM stick), md-expansion_card (GPU) and
 // md-thermometer: four distinct shapes that cannot be mistaken for one another.
-var ICONS = { cpu: "\uF4BC", mem: "\uEFC5", gpu: "\uDB83\uDFB2", temp: "\uDB81\uDD0F" }
+var ICONS = { cpu: "\uF4BC", mem: "\uEFC5", gpu: "\uDB83\uDFB2", temp: "\uDB81\uDD0F", gpuTemp: "\uDB81\uDD0F" }
 // Panel rows: md-swap-horizontal, harddisk, download, upload, gauge, clock-outline, vram.
 var ROW_ICONS = {
   swap: "󰓡", disk: "󰋊", down: "󰇚",
   up: "󰕒", load: "󰊚", uptime: "󰅐",
   vram: "\uDB81\uDE1A"
 }
-var DEFAULTS = { style: "pulse", metric: "cpu", metrics: ["cpu"], metricOrder: ["cpu", "mem", "gpu", "temp"], interval: 2, alert: 90 }
+var DEFAULTS = { style: "pulse", metric: "cpu", metrics: ["cpu"], metricOrder: ["cpu", "mem", "gpu", "temp", "gpuTemp"], interval: 2, alert: 90 }
 
 // Temperature meters span 30..100 °C: a CPU never idles at 0, so a scale
 // from zero would leave every meter half full on a cold machine.

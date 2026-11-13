@@ -42,13 +42,15 @@
   "style.pulse": "Пульс",
   "style.bars": "Столбцы",
   "style.text": "Число",
-  "tip.cpu": "ЦП %1%",
-  "tip.mem": "Память %1%",
-  "tip.gpu": "ГП %1%",
-  "tip.temp": "%1 °C",
+  "tip.cpu": "CPU %1%",
+  "tip.mem": "RAM %1%",
+  "tip.gpu": "GPU %1%",
+  "tip.temp": "температура CPU %1 °C",
+  "tip.gpuTemp": "температура GPU %1 °C",
   "metric.all": "Все",
-  "metric.cpu": "ЦП",
+  "metric.cpu": "CPU",
   "metric.mem": "RAM",
-  "metric.gpu": "ГП",
-  "metric.temp": "Темп."
+  "metric.gpu": "GPU",
+  "metric.temp": "температура CPU",
+  "metric.gpuTemp": "температура GPU"
 }

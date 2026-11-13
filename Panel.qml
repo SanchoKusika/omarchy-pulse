@@ -531,25 +531,27 @@ Panel {
               }
             }
 
-            Row {
-              id: chipsRow
+            Grid {
+              id: metricGrid
               width: parent.width
-              spacing: Style.space(6)
+              columns: 3
+              spacing: Style.space(4)
               readonly property var list: root.hostWidget ? root.hostWidget.orderedMetrics : []
-              readonly property real cellWidth: (width - spacing * Math.max(0, list.length - 1)) / Math.max(1, list.length)
+              readonly property real cellWidth: Math.floor((width - spacing * (columns - 1)) / columns)
 
               Repeater {
-                model: chipsRow.list
+                model: metricGrid.list
 
                 BorderSurface {
                   id: chip
                   required property var modelData
                   required property int index
                   readonly property bool active: root.hostWidget && root.hostWidget.isMetricActive(modelData)
-                  readonly property int total: chipsRow.list.length
+                  readonly property int total: metricGrid.list.length
+                  readonly property bool temperature: modelData === "temp" || modelData === "gpuTemp"
 
-                  width: chipsRow.cellWidth
-                  height: Style.space(32)
+                  width: metricGrid.cellWidth
+                  height: Style.space(38)
                   radius: Style.cornerRadius
                   borderSpec: chip.active
                     ? Border.controlSpec("selected", root.fg, Style.accent)
@@ -569,7 +571,7 @@ Panel {
                     anchors.top: parent.top
                     anchors.bottom: parent.bottom
                     anchors.margins: Style.space(1)
-                    width: Style.space(18)
+                    width: Style.space(14)
                     enabled: chip.index > 0
                     opacity: enabled ? 0.9 : 0.15
                     horizontalPadding: 0
@@ -588,7 +590,7 @@ Panel {
                     anchors.top: parent.top
                     anchors.bottom: parent.bottom
                     anchors.margins: Style.space(1)
-                    width: Style.space(18)
+                    width: Style.space(14)
                     enabled: chip.index < chip.total - 1
                     opacity: enabled ? 0.9 : 0.15
                     horizontalPadding: 0
@@ -611,8 +613,11 @@ Panel {
                     Row {
                       anchors.centerIn: parent
                       spacing: Style.space(3)
+                      width: Math.min(implicitWidth, parent.width)
 
                       MetricIcon {
+                        id: chipIcon
+                        visible: !chip.temperature
                         size: Style.font.body
                         glyphSize: Style.font.body
                         metric: chip.modelData
@@ -622,6 +627,9 @@ Panel {
 
                       PlainText {
                         text: strings.t("metric." + chip.modelData)
+                        width: Math.min(implicitWidth, Math.max(0, centerArea.width - (chipIcon.visible ? chipIcon.width + parent.spacing : 0)))
+                        wrapMode: Text.WordWrap
+                        horizontalAlignment: Text.AlignHCenter
                         font.pixelSize: Style.font.bodySmall
                         font.bold: chip.active
                         color: root.fg

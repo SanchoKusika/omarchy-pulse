@@ -30,7 +30,7 @@ Pick your preferred style on the fly with **Right click** or inside the panel. W
 
 ## Highlights
 
-- **Multi-Metric Everywhere**: Follow any combination or all metrics (`CPU`, `RAM`, `GPU`, `Temp`) simultaneously across all three visual styles.
+- **Multi-Metric Everywhere**: Follow any combination or all metrics (`CPU`, `RAM`, `GPU`, `CPU temperature`, `GPU temperature` (when reported by NVIDIA)) simultaneously across all three visual styles.
 - **Unified Reordering & Selection**: Toggle components active/inactive with a click, and rearrange their order using `‹` / `›` buttons. Changes reflect instantly on the bar and save automatically.
 - **Full GPU Support**: Automatic vendor detection (NVIDIA via `nvidia-smi`, AMD via `sysfs DRM`), monitoring load %, VRAM usage, and temperatures with a custom Lucide GPU vector icon.
 - **Horizontal Flow Everywhere**: On vertical bars, pulse sparklines flow left-to-right rather than vertically, maintaining visual clarity.
@@ -119,8 +119,8 @@ Settings are saved in `~/.config/omarchy/shell.json`:
 | Key | Description | Default |
 |---|---|---|
 | `style` | Bar look: `"pulse"`, `"bars"`, or `"text"` | `"pulse"` |
-| `metrics` | Active metrics displayed on the bar: `["cpu", "mem", "gpu", "temp"]` | `["cpu"]` |
-| `metricOrder` | User's preferred sequence of components | `["cpu", "mem", "gpu", "temp"]` |
+| `metrics` | Active metrics displayed on the bar: `["cpu", "mem", "gpu", "temp", "gpuTemp"]` | `["cpu"]` |
+| `metricOrder` | User's preferred sequence of components | `["cpu", "mem", "gpu", "temp", "gpuTemp"]` |
 | `interval` | Sampling frequency in seconds (1–10) | `2` |
 | `alert` | Load % threshold for urgent color and ripple alerts (50–100) | `90` |
 

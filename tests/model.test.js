@@ -15,7 +15,7 @@ function check(name, actual, expected) {
 }
 
 // ---- settings
-check("defaults", M.normalize(undefined), { style: "pulse", metric: "cpu", metrics: ["cpu"], metricOrder: ["cpu", "mem", "gpu", "temp"], interval: 2, alert: 90 })
+check("defaults", M.normalize(undefined), { style: "pulse", metric: "cpu", metrics: ["cpu"], metricOrder: ["cpu", "mem", "gpu", "temp", "gpuTemp"], interval: 2, alert: 90 })
 check("unknown style falls back", M.normalize({ style: "<b>x</b>" }).style, "pulse")
 check("interval clamps low", M.normalize({ interval: 0 }).interval, 1)
 check("interval clamps high", M.normalize({ interval: 999 }).interval, 10)
@@ -30,11 +30,11 @@ check("unknown metric falls back", M.normalize({ metric: "fan" }).metric, "cpu")
 check("gpu metric kept", M.normalize({ metric: "gpu" }).metric, "gpu")
 check("metrics array kept", M.normalize({ metrics: ["cpu", "gpu"] }).metrics, ["cpu", "gpu"])
 check("metrics array order preserved", M.normalize({ metrics: ["gpu", "cpu", "temp", "mem"] }).metrics, ["gpu", "cpu", "temp", "mem"])
-check("metrics all expands", M.normalize({ metric: "all" }).metrics, ["cpu", "mem", "gpu", "temp"])
-check("metric cycles", M.nextMetric("temp"), "cpu")
-check("metric cycles back", M.nextMetric("cpu", -1), "temp")
-check("icons are single glyphs", Object.values(M.ICONS).map(s => [...s].length), [1, 1, 1, 1])
-check("icons are the md glyphs", Object.values(M.ICONS).map(s => s.codePointAt(0).toString(16)), ["f4bc", "efc5", "f0fb2", "f050f"])
+check("metrics all expands", M.normalize({ metric: "all" }).metrics, ["cpu", "mem", "gpu", "temp", "gpuTemp"])
+check("metric cycles", M.nextMetric("gpuTemp"), "cpu")
+check("metric cycles back", M.nextMetric("cpu", -1), "gpuTemp")
+check("icons are single glyphs", Object.values(M.ICONS).map(s => [...s].length), [1, 1, 1, 1, 1])
+check("icons are the md glyphs", Object.values(M.ICONS).map(s => s.codePointAt(0).toString(16)), ["f4bc", "efc5", "f0fb2", "f050f", "f050f"])
 
 // ---- gpu parsing
 check("parse nvidia gpu", M.parseGpu("80, 25, 2662, 4096, 50\n", "nvidia"), {
