@@ -26,6 +26,8 @@ Item {
   property real vramUsed: 0
   property real vramTotal: 0
   property real gpuTemp: NaN
+  readonly property bool hasGpuTemp: isFinite(gpuTemp)
+  property var gpuTempHistory: []
   property real rxRate: 0
   property real txRate: 0
   property var load: [0, 0, 0]
@@ -200,11 +202,14 @@ Item {
       waitForEnd: true
       onStreamFinished: {
         var g = Model.parseGpu(text, root.gpuType)
+        root.gpuTemp = g.temp
+        if (root.hasGpuTemp) {
+          root.gpuTempHistory = Model.pushHistory(root.gpuTempHistory, Model.tempFraction(g.temp), Model.HISTORY)
+        }
         if (g.ok) {
           root.gpu = g.gpu
           root.vramUsed = g.vramUsed
           root.vramTotal = g.vramTotal
-          root.gpuTemp = g.temp
           root.gpuHistory = Model.pushHistory(root.gpuHistory, root.gpu / 100, Model.HISTORY)
         }
       }

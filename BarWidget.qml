@@ -44,9 +44,13 @@ BarWidget {
   property bool memHot: false
   property bool gpuHot: false
   property bool tempHot: false
+  property bool gpuTempHot: false
 
   Connections {
     target: sampler
+    function onGpuTempChanged() {
+      root.gpuTempHot = Model.alertState(root.gpuTempHot, sampler.gpuTemp, Model.TEMP_HOT, Model.HYSTERESIS)
+    }
     function onSampled() {
       root.cpuHot = Model.alertState(root.cpuHot, sampler.cpu, root.cfg.alert, Model.HYSTERESIS)
       root.memHot = Model.alertState(root.memHot, sampler.memTotal > 0 ? sampler.memFraction * 100 : -1,
@@ -57,11 +61,12 @@ BarWidget {
     }
   }
 
-  readonly property bool hot: cpuHot || memHot || gpuHot || tempHot
+  readonly property bool hot: cpuHot || memHot || gpuHot || tempHot || gpuTempHot
 
   function isHot(metric) {
     if (metric === "mem") return root.memHot
     if (metric === "gpu") return root.gpuHot
+    if (metric === "gpuTemp") return root.gpuTempHot
     if (metric === "temp") return root.tempHot
     return root.cpuHot
   }
@@ -75,6 +80,7 @@ BarWidget {
     var out = ["cpu", "mem"]
     if (sampler.hasGpu) out.push("gpu")
     if (sampler.hasTemp) out.push("temp")
+    if (sampler.hasGpuTemp) out.push("gpuTemp")
     return out
   }
 
@@ -119,9 +125,10 @@ BarWidget {
       var g = Commons.I18n.formatNumber(Math.round(sampler.gpu))
       return withUnit ? g + "%" : g
     }
-    if (metric === "temp") {
-      if (!sampler.hasTemp) return "–"
-      var t = Commons.I18n.formatNumber(Math.round(sampler.temp))
+    if (metric === "temp" || metric === "gpuTemp") {
+      var temperature = metric === "gpuTemp" ? sampler.gpuTemp : sampler.temp
+      if (!isFinite(temperature)) return "–"
+      var t = Commons.I18n.formatNumber(Math.round(temperature))
       return withUnit ? t + "°" : t
     }
     if (sampler.cpu < 0) return "–"
@@ -132,6 +139,7 @@ BarWidget {
   function historyOf(metric) {
     if (metric === "mem") return sampler.memHistory
     if (metric === "gpu") return sampler.gpuHistory
+    if (metric === "gpuTemp") return sampler.gpuTempHistory
     if (metric === "temp") return sampler.tempHistory
     return sampler.cpuHistory
   }
@@ -171,6 +179,9 @@ BarWidget {
       } else if (m === "gpu") {
         val = sampler.gpu >= 0 ? sampler.gpu / 100 : 0
         known = sampler.hasGpu && sampler.gpu >= 0
+      } else if (m === "gpuTemp") {
+        val = Model.tempFraction(sampler.gpuTemp)
+        known = sampler.hasGpuTemp
       } else if (m === "temp") {
         val = Model.tempFraction(sampler.temp)
         known = sampler.hasTemp
@@ -241,10 +252,7 @@ BarWidget {
 
   function setMetric(name) {
     if (name === "all") {
-      var all = ["cpu", "mem"]
-      if (sampler.hasGpu) all.push("gpu")
-      if (sampler.hasTemp) all.push("temp")
-      setMetrics(all)
+      setMetrics(root.allAvailableMetrics)
     } else if (Model.METRICS.indexOf(name) >= 0) {
       setMetrics([name])
     }
@@ -323,10 +331,8 @@ BarWidget {
     var presets = [["cpu"], ["mem"]]
     if (sampler.hasGpu) presets.push(["gpu"])
     if (sampler.hasTemp) presets.push(["temp"])
-    var all = ["cpu", "mem"]
-    if (sampler.hasGpu) all.push("gpu")
-    if (sampler.hasTemp) all.push("temp")
-    presets.push(all)
+    if (sampler.hasGpuTemp) presets.push(["gpuTemp"])
+    presets.push(root.allAvailableMetrics)
 
     var curIdx = -1
     for (var p = 0; p < presets.length; p++) {

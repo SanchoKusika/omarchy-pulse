@@ -41,12 +41,14 @@
   "style.bars": "Bars",
   "style.text": "Number",
   "tip.cpu": "CPU %1%",
-  "tip.mem": "Memory %1%",
+  "tip.mem": "RAM %1%",
   "tip.gpu": "GPU %1%",
-  "tip.temp": "%1 °C",
+  "tip.temp": "CPU temperature %1 °C",
+  "tip.gpuTemp": "GPU temperature %1 °C",
   "metric.all": "All",
   "metric.cpu": "CPU",
   "metric.mem": "RAM",
   "metric.gpu": "GPU",
-  "metric.temp": "Temp"
+  "metric.temp": "CPU temperature",
+  "metric.gpuTemp": "GPU temperature"
 }
